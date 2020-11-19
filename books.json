@@ -1,0 +1,77 @@
+[
+    {
+        "id": 1,
+        "name": "Book 1", 
+        "author": "Omar Alibrahim", 
+        "img": "https://www.printoclock.com/blog/wp-content/uploads/2017/08/56c6f9b497f50.jpg",
+        "description": "This book is going to open a lot of areas in your personality!",
+        "slug": "Book-1",
+        "price": 41
+    },
+    {
+        "id": 2,
+        "name": "Book2",
+        "author": "Hasan Ali", 
+        "img": "https://i.pinimg.com/736x/a0/e6/26/a0e626af3883e109da440ec021080f99.jpg",
+        "description": "An amazing book between your hands that will show you how dirty the world is!",
+        "slug": "Book-2",
+        "price": 22
+    },
+    {
+        "id": 3,
+        "name": "Book 3",
+        "author": "Benjiman Ali", 
+        "img": "https://marketplace.canva.com/EAD7YH8bebE/1/0/251w/canva-white-bold-text-thriller-mystery-book-cover-CejxvxrTCyg.jpg",
+        "description": "A creepy book that will let you cover yourself under the blanket",
+        "slug": "Book-3",
+        "price": 13
+    }
+
+    ,
+    {
+        "id": 4,
+        "name": "Book 4",
+        "author": "Ali Kamal", 
+        "img": "https://tannerjohnston.info/wp-content/uploads/2018/07/art_bookcover.png",
+        "description": "Abstraction is the most cool thing on this earth!",
+        "slug": "Book-4",
+        "price": 3
+    },
+    {
+        "id": 5,
+        "name": "Book5",
+        "author": "Omar Alibrahim", 
+        "img": "https://www.printoclock.com/blog/wp-content/uploads/2017/08/56c6f9b497f50.jpg",
+        "description": "This book is going to open a lot of areas in your personality!",
+        "slug": "Book-5",
+        "price": 2
+    },
+    {
+        "id": 6,
+        "name": "Book6",
+        "author": "Hasan Ali", 
+        "img": "https://i.pinimg.com/736x/a0/e6/26/a0e626af3883e109da440ec021080f99.jpg",
+        "description": "An amazing book between your hands that will show you how dirty the world is!",
+        "slug": "Book-6",
+        "price": 4
+    },
+    {
+        "id": 7,
+        "name": "Book7",
+        "author": "Benjiman Ali", 
+        "img": "https://marketplace.canva.com/EAD7YH8bebE/1/0/251w/canva-white-bold-text-thriller-mystery-book-cover-CejxvxrTCyg.jpg",
+        "description": "A creepy book that will let you cover yourself under the blanket",
+        "slug": "Book-7",
+        "price": 1
+    },
+    {
+        "id": 8,
+        "name": "Book8",
+        "author": "Ali Kamal", 
+        "img": "https://tannerjohnston.info/wp-content/uploads/2018/07/art_bookcover.png",
+        "description": "Abstraction is the most cool thing on this earth!",
+        "slug": "Book-8",
+        "price": 2
+
+    }
+]
