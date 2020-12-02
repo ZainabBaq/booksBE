@@ -3,6 +3,11 @@ const cors = require("cors");
 const app = express();
 const cookiesRoutes = require("./routes/books");
 const db = require("./db/models");
+const {
+  errorMiddleware,
+  notFoundMiddleware,
+} = require("./middleware/errorMiddleware");
+
 const path = require("path");
 // Middleware
 app.use(cors());
@@ -13,17 +18,15 @@ app.use("/media", express.static(path.join(__dirname, "media")));
 // Routes Middleware
 app.use("/books", cookiesRoutes);
 
-// Not found middlewre
-app.use((req, res, next) => {
-  res.status(404).json({ message: "Path not found!" });
-});
+app.use(errorMiddleware);
+app.use(notFoundMiddleware);
 const run = async () => {
   try {
     // TODO: MAKE SURE TI REMOVE force
-    await db.sequelize.sync({ force: true });
+    await db.sequelize.sync({ alter: true });
     console.log("Connection to the database successful!");
-    await app.listen(8000, () => {
-      console.log("The application is running on localhost:8000");
+    await app.listen(80, () => {
+      console.log("The application is running on localhost:80");
     });
   } catch (error) {
     console.error("Error connecting to the database: ", error);
@@ -31,7 +34,3 @@ const run = async () => {
 };
 
 run();
-// PORTS
-app.listen(80, () => {
-  console.log("The application is running on a local host 8000");
-});

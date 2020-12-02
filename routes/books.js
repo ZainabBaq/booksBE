@@ -7,9 +7,10 @@ const {
   updateBookController,
   getAllBooksController,
 } = require("../controllers/booksController");
+const { bookParamsMiddleware } = require("../middleware/bookParamMiddleware");
 const upload = require("../middleware/multer");
 // ROUTES: GET
-
+router.param("bookId", bookParamsMiddleware);
 router.get("/", getAllBooksController);
 router.get("/:bookId", getSingleBookController);
 router.post("/create", upload.single("image"), bookCreateController);
