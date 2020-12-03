@@ -1,5 +1,12 @@
 const slugify = require("@sindresorhus/slugify");
+const { reduceRight } = require("lodash");
 const { Book } = require("../db/models");
+
+//  IMAGE
+const appendMediaPathToFileFromReq = (req) => {
+  const path = "http://" + req.get("host") + "/media/" + req.file.filename;
+  return encodeURI(path);
+};
 
 getDatabaseBooks = async () => {
   const books = await Book.findAll({
@@ -7,11 +14,6 @@ getDatabaseBooks = async () => {
   });
   console.log("All books: ", books);
   return books;
-};
-
-const appendMediaPathToFileFromReq = (req) => {
-  const path = "http://" + req.get("host") + "/media/" + req.file.filename;
-  return encodeURI(path);
 };
 
 // Controllers
@@ -44,8 +46,12 @@ exports.deleteBookController = async (req, res, next) => {
 // PUT: Update
 exports.updateBookController = async (req, res, next) => {
   const foundBook = req.book;
+  console.log("Updating:");
   try {
-    const updatedBook = await foundBook.update(req.book);
+    if (req.file) {
+      req.body.image = appendMediaPathToFileFromReq(req);
+    }
+    const updatedBook = await foundBook.update(req.body);
     res
       .status(201)
       .json({ message: "Your book has been updated!", updatedBook });
@@ -56,9 +62,11 @@ exports.updateBookController = async (req, res, next) => {
 
 // POST: Create
 exports.bookCreateController = async (req, res, next) => {
-  const book = { ...req.body, image: appendMediaPathToFileFromReq(req) };
+  if (req.file) {
+    req.body.image = appendMediaPathToFileFromReq(req);
+  }
   try {
-    let newBook = await Book.create(book);
+    let newBook = await Book.create(req.body);
     res.status(201).json(newBook);
   } catch (e) {
     next(e);
