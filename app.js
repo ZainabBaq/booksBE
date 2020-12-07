@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const cookiesRoutes = require("./routes/books");
+const booksRoutes = require("./routes/books");
+const authorsRoutes = require("./routes/authors");
+const authenticationRoutes = require("./routes/authentication");
 const db = require("./db/models");
 const {
   errorMiddleware,
@@ -16,13 +18,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/media", express.static(path.join(__dirname, "media")));
 
 // Routes Middleware
-app.use("/books", cookiesRoutes);
+app.use("/books", booksRoutes);
+app.use("/authors", authorsRoutes);
+app.use(authenticationRoutes);
 
 app.use(errorMiddleware);
 app.use(notFoundMiddleware);
 const run = async () => {
   try {
     // TODO: MAKE SURE TI REMOVE force
+    // await db.sequelize.sync();
+    // await db.sequelize.sync({ force: true });
     await db.sequelize.sync({ alter: true });
     console.log("Connection to the database successful!");
     await app.listen(80, () => {

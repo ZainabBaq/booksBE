@@ -2,7 +2,7 @@ const { Sequelize } = require("sequelize");
 const SequelizeSlugify = require("sequelize-slugify");
 // Book Module
 module.exports = (sequelize, DataTypes) => {
-  const Book = sequelize.define("Book", {
+  const Author = sequelize.define("Author", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -11,24 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true,
     },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    price: {
-      type: DataTypes.INTEGER,
-      defaultValue: 5,
-      validate: {
-        min: 1,
-      },
-    },
     image: {
       type: DataTypes.STRING,
       allowNull: true,
     },
   });
-  SequelizeSlugify.slugifyModel(Book, {
+  SequelizeSlugify.slugifyModel(Author, {
     source: ["name"],
   });
-  return Book;
+  return Author;
 };

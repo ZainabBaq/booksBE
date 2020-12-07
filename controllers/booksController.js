@@ -59,16 +59,3 @@ exports.updateBookController = async (req, res, next) => {
     next(error);
   }
 };
-
-// POST: Create
-exports.bookCreateController = async (req, res, next) => {
-  if (req.file) {
-    req.body.image = appendMediaPathToFileFromReq(req);
-  }
-  try {
-    let newBook = await Book.create(req.body);
-    res.status(201).json(newBook);
-  } catch (e) {
-    next(e);
-  }
-};

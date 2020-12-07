@@ -43,8 +43,14 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// RELATIONSHIPS
+db.Author.hasMany(db.Book, {
+  as: "books",
+  foreignKey: { fieldName: "authorId", allowNull: false },
+});
+db.Book.belongsTo(db.Author, {
+  as: "author",
+  foreignKey: { fieldName: "authorId" },
+});
+// Export
 module.exports = db;
-const Book = require("./Book");
-exports = {
-  Book,
-};
