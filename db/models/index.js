@@ -52,5 +52,6 @@ db.Book.belongsTo(db.Author, {
   as: "author",
   foreignKey: { fieldName: "authorId" },
 });
+
 // Export
 module.exports = db;

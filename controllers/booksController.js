@@ -1,6 +1,6 @@
 const slugify = require("@sindresorhus/slugify");
 const { reduceRight } = require("lodash");
-const { Book } = require("../db/models");
+const { Book, Author } = require("../db/models");
 
 //  IMAGE
 const appendMediaPathToFileFromReq = (req) => {
@@ -9,10 +9,13 @@ const appendMediaPathToFileFromReq = (req) => {
 };
 
 getDatabaseBooks = async () => {
-  const books = await Book.findAll({
-    attributes: { exclude: ["createdAt", "updatedAt"] },
+  let books = await Book.findAll({
+    attributes: { exclude: ["createdAt", "updatedAt", "authorId"] },
+    include: [{ model: Author, as: "author", attributes: ["name"] }],
   });
   console.log("All books: ", books);
+  // Manipulating books
+  //
   return books;
 };
 
