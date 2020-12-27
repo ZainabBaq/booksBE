@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 const router = express.Router();
 const {
   authorCreateController,
@@ -19,7 +20,12 @@ router.param("authorId", authorParamsMiddleware);
 router.get("/", getAllAuthorsController);
 router.get("/:authorId", getSingleAuthorController);
 router.delete("/:authorId", deleteAuthorController);
-router.post("/create", upload.single("image"), authorCreateController);
+router.post(
+  "/create",
+  passport.authenticate("jwt", { session: false }),
+  upload.single("image"),
+  authorCreateController
+);
 router.put("/:authorId", upload.single("image"), updateAuthorController);
 
 // Books

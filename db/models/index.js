@@ -53,5 +53,24 @@ db.Book.belongsTo(db.Author, {
   foreignKey: { fieldName: "authorId" },
 });
 
+db.User.hasOne(db.Author, {
+  as: "author",
+  foreignKey: "userId",
+});
+db.Author.belongsTo(db.User, { as: "user" });
+
+// User ----> Order
+db.User.hasMany(db.Order, { as: "orders", foreignKey: "userId" });
+db.Order.belongsTo(db.User, { as: "user" });
+
+// Order <---> Order Item
+db.Order.belongsToMany(db.Book, {
+  through: db.OrderItem,
+  foreignKey: "orderId",
+  as: "books",
+});
+db.Book.belongsToMany(db.Order, {
+  through: db.OrderItem,
+});
 // Export
 module.exports = db;

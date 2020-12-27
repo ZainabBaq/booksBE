@@ -70,6 +70,8 @@ exports.authorCreateController = async (req, res, next) => {
   if (req.file) {
     req.body.image = appendMediaPathToFileFromReq(req);
   }
+  console.log("REQ:", req.user);
+  req.body.userId = req.user.id;
   try {
     let newAuthor = await Author.create(req.body);
     res.status(201).json(newAuthor);
