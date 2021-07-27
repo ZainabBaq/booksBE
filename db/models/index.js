@@ -46,7 +46,7 @@ db.Sequelize = Sequelize;
 // RELATIONSHIPS
 db.Author.hasMany(db.Book, {
   as: "books",
-  foreignKey: { fieldName: "authorId", allowNull: false },
+  foreignKey: { fieldName: "authorId", allowNull: true },
 });
 db.Book.belongsTo(db.Author, {
   as: "author",

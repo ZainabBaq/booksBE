@@ -15,7 +15,7 @@ getDatabaseAuthors = async () => {
       { model: User, as: "user", attributes: ["name"] },
     ],
     // raw: true,
-    group: ["Author.id", "Book.id"],
+    group: ["Author.id"],
   });
   console.log("All authors: ", authors);
   return authors;

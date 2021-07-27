@@ -25,7 +25,7 @@ exports.getAllBooksController = async (req, res, next) => {
   try {
     console.log("Getting all ");
     let books = await getDatabaseBooks();
-    res.status(200).json(books);
+    res.status(200).json({ books, flag: "REQUEST {5258}" });
   } catch (e) {
     next(e);
   }
@@ -60,5 +60,21 @@ exports.updateBookController = async (req, res, next) => {
       .json({ message: "Your book has been updated!", updatedBook });
   } catch (error) {
     next(error);
+  }
+};
+
+// POST: Create
+exports.bookCreateController = async (req, res, next) => {
+  const book = req.body;
+  if (req.file) {
+    book.image = appendMediaPathToFileFromReq(req);
+  } else if (book.imageUrl) {
+    book.image = book.imageUrl;
+  }
+  try {
+    let newBook = await Book.create(book);
+    res.status(201).json(newBook);
+  } catch (e) {
+    next(e);
   }
 };
