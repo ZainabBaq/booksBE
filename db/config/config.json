@@ -4,9 +4,10 @@
     "password": "postgres",
     "database": "books_db",
     "host": "127.0.0.1",
-    "dialect": "postgres",
+    "dialect": "sqlite",
     "port": 5432,
-    "logging": false
+    "logging": false,  
+    "storage": "data.sqlite3"
   },
   "test": {
     "username": "root",
