@@ -25,7 +25,7 @@ exports.getAllBooksController = async (req, res, next) => {
   try {
     console.log("Getting all ");
     let books = await getDatabaseBooks();
-    res.status(200).json({ books, flag: "REQUEST {5258}" });
+    res.status(200).json({ books, flag: "GET {5258}" });
   } catch (e) {
     next(e);
   }
