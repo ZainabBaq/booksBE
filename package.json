@@ -6,7 +6,8 @@
   "author": "Omar <omsi96@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon app.js"
+     "start": "./node_modules/.bin/netlify-lambda serve src",
+    "build": "./node_modules/.bin/netlify-lambda build src"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^1.1.0",
